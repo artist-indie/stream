@@ -3,201 +3,964 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indie Artist Radar - Showcase Rilisan Musik</title>
+  <title>Indie Artist Radar - Showcase Rilisan Musik & Artis Independen</title>
   
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <style>
-    /* RESET & BASE STYLES */
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', system-ui, sans-serif; }
-    body { background-color: #0b0c10; color: #c5c6c7; padding: 20px; line-height: 1.5; }
-    .container { max-width: 1200px; margin: 0 auto; }
+    /* ==========================================
+       1. RESET & BASE STYLES
+       ========================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
 
-    /* HEADER */
-    header { text-align: center; margin-bottom: 35px; }
-    header h1 { font-size: 2.2rem; color: #66fcf1; text-transform: uppercase; letter-spacing: 2px; }
-    header p { color: #8892b0; font-size: 0.95rem; margin-top: 5px; }
+    body {
+      background-color: #08090c;
+      color: #c5c6c7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-    /* FORM CARD SECTION */
-    .form-card { background: #1f2833; padding: 25px; border-radius: 12px; border: 1px solid #45a29e44; margin-bottom: 40px; }
-    .form-card h2 { margin-bottom: 20px; font-size: 1.2rem; color: #45a29e; display: flex; align-items: center; gap: 8px; }
-    .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 0.85rem; color: #c5c6c7; margin-bottom: 6px; font-weight: 600; }
-    .form-group input { width: 100%; padding: 10px 14px; background: #0b0c10; border: 1px solid #45a29e44; color: #fff; border-radius: 6px; font-size: 0.9rem; }
-    .form-group input:focus { outline: none; border-color: #66fcf1; }
-    .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; }
-    
-    button.btn-submit { background: linear-gradient(135deg, #45a29e, #66fcf1); border: none; color: #0b0c10; padding: 12px 20px; border-radius: 6px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; font-size: 1rem; text-transform: uppercase; transition: opacity 0.2s; }
-    button.btn-submit:hover { opacity: 0.9; }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #08090c;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2833;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #45a29e;
+    }
 
-    /* SHOWCASE GRID SECTION */
-    .section-title { font-size: 1.4rem; color: #fff; margin-bottom: 20px; border-left: 4px solid #66fcf1; padding-left: 10px; }
-    .artists-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
-    
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ==========================================
+       2. HEADER & NAVBAR
+       ========================================== */
+    header.main-header {
+      background: rgba(11, 12, 16, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(69, 162, 158, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+    }
+
+    .header-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #45a29e, #66fcf1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b0c10;
+      font-size: 1.2rem;
+      box-shadow: 0 0 15px rgba(102, 252, 241, 0.3);
+    }
+
+    .brand-text h1 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-text span {
+      color: #66fcf1;
+    }
+
+    .brand-text p {
+      color: #8892b0;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    /* Primary CTA Button */
+    .btn-open-modal {
+      background: linear-gradient(135deg, #45a29e, #66fcf1);
+      color: #0b0c10;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(102, 252, 241, 0.2);
+    }
+
+    .btn-open-modal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 252, 241, 0.4);
+      filter: brightness(1.05);
+    }
+
+    /* ==========================================
+       3. HERO / BANNER SECTION
+       ========================================== */
+    .hero-section {
+      padding: 48px 0 32px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(69, 162, 158, 0.12) 0%, transparent 70%);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(69, 162, 158, 0.1);
+      border: 1px solid rgba(102, 252, 241, 0.25);
+      color: #66fcf1;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-subtitle {
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.98rem;
+    }
+
+    /* ==========================================
+       4. SHOWCASE GRID SECTION
+       ========================================== */
+    .main-content {
+      flex: 1;
+      padding-bottom: 60px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title i {
+      color: #66fcf1;
+    }
+
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
     /* ARTIST CARD DESIGN */
-    .artist-card { background: #1f2833; border: 1px solid #2e3c4d; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s; }
-    .artist-card:hover { transform: translateY(-5px); border-color: #66fcf1; }
-    
-    /* COVER IMAGE FROM YOUTUBE */
-    .cover-wrapper { width: 100%; height: 180px; background: #0b0c10; position: relative; overflow: hidden; }
-    .cover-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-    
-    .card-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
-    .artist-name { font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
-    .artist-genre { align-self: flex-start; background: #45a29e22; color: #66fcf1; font-size: 0.75rem; padding: 3px 10px; border-radius: 20px; font-weight: 600; margin-bottom: 16px; border: 1px solid #45a29e44; }
-    
+    .artist-card {
+      background: #141a22;
+      border: 1px solid rgba(69, 162, 158, 0.18);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .artist-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(102, 252, 241, 0.5);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(102, 252, 241, 0.15);
+    }
+
+    /* COVER IMAGE */
+    .cover-wrapper {
+      width: 100%;
+      height: 190px;
+      background: #0b0c10;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .artist-card:hover .cover-wrapper img {
+      transform: scale(1.06);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 12, 16, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .play-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(102, 252, 241, 0.9);
+      color: #0b0c10;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      padding-left: 3px;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .artist-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .artist-card:hover .play-icon {
+      transform: scale(1);
+    }
+
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .artist-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .artist-genre {
+      align-self: flex-start;
+      background: rgba(69, 162, 158, 0.15);
+      color: #66fcf1;
+      font-size: 0.72rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      border: 1px solid rgba(69, 162, 158, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     /* PLATFORM STREAMING BUTTONS */
-    .platform-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
-    .btn-link { text-decoration: none; padding: 6px 12px; font-size: 0.78rem; border-radius: 6px; font-weight: 700; color: #fff; transition: filter 0.2s; }
-    .btn-link:hover { filter: brightness(1.2); }
-    
-    /* PLATFORM COLORS */
-    .spotify { background: #1DB954; }
-    .ytmusic { background: #FF0000; }
-    .soundcloud { background: #FF5500; }
-    .audiomack { background: #FFA200; color: #000; }
-    .amazon { background: #00A8E1; }
+    .platform-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .platform-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .btn-link {
+      text-decoration: none;
+      padding: 7px 12px;
+      font-size: 0.78rem;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-link:hover {
+      filter: brightness(1.2);
+      transform: translateY(-2px);
+    }
+
+    /* PLATFORM SPECIFIC STYLES */
+    .btn-link.spotify { background: #1DB954; }
+    .btn-link.ytmusic { background: #FF0000; }
+    .btn-link.soundcloud { background: #FF5500; }
+    .btn-link.audiomack { background: #FFA200; color: #000; }
+    .btn-link.amazon { background: #00A8E1; }
+
+    /* ==========================================
+       5. POP-UP MODAL STYLES
+       ========================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 9, 12, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-container {
+      background: #141a22;
+      border: 1px solid rgba(69, 162, 158, 0.3);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 20px rgba(102, 252, 241, 0.15);
+      transform: scale(0.9) translateY(20px);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .modal-backdrop.active .modal-container {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #141a22;
+      z-index: 10;
+    }
+
+    .modal-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #66fcf1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .btn-close-modal:hover {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-group label span {
+      color: #ef4444;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 11px 14px;
+      background: #0b0c10;
+      border: 1px solid rgba(69, 162, 158, 0.25);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #66fcf1;
+      box-shadow: 0 0 0 3px rgba(102, 252, 241, 0.1);
+    }
+
+    .grid-inputs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .form-divider {
+      margin: 20px 0 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #45a29e;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(69, 162, 158, 0.2);
+    }
+
+    button.btn-submit {
+      background: linear-gradient(135deg, #45a29e, #66fcf1);
+      border: none;
+      color: #0b0c10;
+      padding: 14px 20px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    button.btn-submit:hover {
+      opacity: 0.95;
+      box-shadow: 0 4px 15px rgba(102, 252, 241, 0.3);
+    }
+
+    /* ==========================================
+       6. FOOTER SECTION
+       ========================================== */
+    footer.main-footer {
+      background: #050608;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 48px 0 24px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr repeat(2, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-about p {
+      color: #64748b;
+      font-size: 0.88rem;
+      margin-top: 12px;
+      max-width: 360px;
+    }
+
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #66fcf1;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .social-icon:hover {
+      background: #45a29e;
+      color: #0b0c10;
+      border-color: #45a29e;
+      transform: translateY(-2px);
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.82rem;
+      color: #64748b;
+    }
+
+    /* Empty state if no data */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: #141a22;
+      border: 1px dashed rgba(69, 162, 158, 0.3);
+      border-radius: 16px;
+    }
+
+    .empty-state i {
+      font-size: 2.5rem;
+      color: #45a29e;
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      color: #fff;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .empty-state p {
+      color: #64748b;
+      font-size: 0.88rem;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .brand-text p {
+        display: none;
+      }
+
+      .btn-open-modal span {
+        display: none;
+      }
+
+      .btn-open-modal {
+        padding: 10px 14px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <header>
-    <h1>Indie Artist Radar</h1>
-    <p>Pusat Rujukan & Link Streaming Resmi Artis Indie</p>
+  <!-- ==========================================
+       HEADER & NAVIGATION
+       ========================================== -->
+  <header class="main-header">
+    <div class="container header-wrapper">
+      <a href="#" class="brand-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-compact-disc fa-spin-pulse" style="--fa-animation-duration: 6s;"></i>
+        </div>
+        <div class="brand-text">
+          <h1>Indie <span>Radar</span></h1>
+          <p>Showcase Musik Independen</p>
+        </div>
+      </a>
+
+      <button class="btn-open-modal" id="openModalBtn">
+        <i class="fa-solid fa-plus"></i>
+        <span>Submit Artis / Track</span>
+      </button>
+    </div>
   </header>
 
-  <!-- FORM SUBMISSION -->
-  <div class="form-card">
-    <h2>Submit Track / Profil Artis</h2>
-    <form id="artistForm">
-      <div class="grid-inputs">
-        <div class="form-group">
-          <label>Nama Artis / Project *</label>
-          <input type="text" id="namaArtis" placeholder="Contoh: ABLEZ" required>
-        </div>
-        <div class="form-group">
-          <label>Genre Musik *</label>
-          <input type="text" id="genre" placeholder="Contoh: Hard Rock / Metal 70s" required>
-        </div>
+  <!-- ==========================================
+       HERO BANNER
+       ========================================== -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-tag">
+        <i class="fa-solid fa-bolt"></i> Platform Rujukan Musik Lokal & Independen
+      </div>
+      <h2 class="hero-title">Temukan Talenta Indie Terbaru</h2>
+      <p class="hero-subtitle">Eksplorasi karya rilisan fisik & digital dari berbagai musisi indie potensial. Dukung terus ekosistem musik independen!</p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       MAIN KATALOG ARTIS
+       ========================================== -->
+  <main class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fa-solid fa-fire"></i> Katalog Artis Terbaru
+        </h2>
       </div>
 
-      <div class="form-group">
-        <label>Link Video YouTube Utama (Diambil Cover-nya) *</label>
-        <input type="url" id="linkYTVideo" placeholder="https://www.youtube.com/watch?v=... atau https://youtu.be/..." required>
+      <div class="artists-grid" id="artistsContainer">
+        <!-- Card dari Firestore / Demo akan di-render di sini secara dinamis -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       POP-UP FORM MODAL
+       ========================================== -->
+  <div class="modal-backdrop" id="submitModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <i class="fa-solid fa-circle-plus"></i> Submit Track / Profil Artis
+        </h3>
+        <button class="btn-close-modal" id="closeModalBtn" aria-label="Tutup modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
 
-      <div class="grid-inputs">
-        <div class="form-group">
-          <label>Link Spotify (Opsional)</label>
-          <input type="url" id="linkSpotify" placeholder="https://open.spotify.com/artist/...">
-        </div>
-        <div class="form-group">
-          <label>Link YouTube Music (Opsional)</label>
-          <input type="url" id="linkYTMusic" placeholder="https://music.youtube.com/...">
-        </div>
-      </div>
+      <div class="modal-body">
+        <form id="artistForm">
+          <div class="grid-inputs">
+            <div class="form-group">
+              <label>Nama Artis / Project <span>*</span></label>
+              <input type="text" id="namaArtis" placeholder="Contoh: ABLEZ" required>
+            </div>
 
-      <div class="grid-inputs">
-        <div class="form-group">
-          <label>Link SoundCloud (Opsional)</label>
-          <input type="url" id="linkSoundcloud" placeholder="https://soundcloud.com/...">
-        </div>
-        <div class="form-group">
-          <label>Link Audiomack (Opsional)</label>
-          <input type="url" id="linkAudiomack" placeholder="https://audiomack.com/...">
-        </div>
-        <div class="form-group">
-          <label>Link Amazon Music (Opsional)</label>
-          <input type="url" id="linkAmazon" placeholder="https://music.amazon.com/...">
-        </div>
-      </div>
+            <div class="form-group">
+              <label>Genre Musik <span>*</span></label>
+              <input type="text" id="genre" placeholder="Contoh: Hard Rock / Heavy Metal" required>
+            </div>
+          </div>
 
-      <button type="submit" class="btn-submit">Publish Ke Radar</button>
-    </form>
+          <div class="form-group">
+            <label>Link Video YouTube Utama (Diambil Thumbnail-nya) <span>*</span></label>
+            <input type="url" id="linkYTVideo" placeholder="https://www.youtube.com/watch?v=... atau https://youtu.be/..." required>
+          </div>
+
+          <div class="form-divider">Platform Streaming (Opsional)</div>
+
+          <div class="grid-inputs">
+            <div class="form-group">
+              <label><i class="fa-brands fa-spotify" style="color: #1DB954;"></i> Spotify</label>
+              <input type="url" id="linkSpotify" placeholder="https://open.spotify.com/artist/...">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-brands fa-youtube" style="color: #FF0000;"></i> YouTube Music</label>
+              <input type="url" id="linkYTMusic" placeholder="https://music.youtube.com/...">
+            </div>
+          </div>
+
+          <div class="grid-inputs">
+            <div class="form-group">
+              <label><i class="fa-brands fa-soundcloud" style="color: #FF5500;"></i> SoundCloud</label>
+              <input type="url" id="linkSoundcloud" placeholder="https://soundcloud.com/...">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-solid fa-music" style="color: #FFA200;"></i> Audiomack</label>
+              <input type="url" id="linkAudiomack" placeholder="https://audiomack.com/...">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fa-brands fa-amazon" style="color: #00A8E1;"></i> Amazon Music</label>
+              <input type="url" id="linkAmazon" placeholder="https://music.amazon.com/...">
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">
+            <i class="fa-solid fa-paper-plane"></i> Publish Ke Radar
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 
-  <!-- KATALOG ARTIS -->
-  <h2 class="section-title">Katalog Artis Terbaru</h2>
-  <div class="artists-grid" id="artistsContainer">
-    <!-- Card dari Firestore akan di-render di sini -->
-  </div>
-</div>
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="#" class="brand-logo">
+            <div class="logo-icon">
+              <i class="fa-solid fa-compact-disc"></i>
+            </div>
+            <div class="brand-text">
+              <h1>Indie <span>Radar</span></h1>
+            </div>
+          </a>
+          <p>Wadah publikasi terbuka untuk musisi dan grup musik independen dalam membagikan link resmi rilisan karya musik mereka secara terpusat.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" class="social-icon" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" class="social-icon" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+          </div>
+        </div>
 
-<!-- SDK FIRESTORE VIA CDN (MODULAR V10) -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        <div class="footer-col">
+          <h4>Navigasi</h4>
+          <ul class="footer-links">
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Katalog Artis</a></li>
+            <li><a href="#">Rilisan Terbaru</a></li>
+            <li><a href="#">Submit Musik</a></li>
+          </ul>
+        </div>
 
-  // 1. CONFIG FIRESTORE (Ganti dengan kunci proyek Firebase milikmu)
-  const firebaseConfig = {
-    apiKey: "AIzaSyCJeyHW1iH_Sr5HKEermjAYVWoqfsAe4wo",
-    authDomain: "indie-music-e8e52.firebaseapp.com",
-    projectId: "indie-music-e8e52",
-    storageBucket: "indie-music-e8e52.firebasestorage.app",
-    messagingSenderId: "665460584645",
-    appId: "1:665460584645:web:c14fec0121a1e68ae080ac"
-  };
+        <div class="footer-col">
+          <h4>Dukungan</h4>
+          <ul class="footer-links">
+            <li><a href="#">Panduan Submission</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+      </div>
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+      <div class="footer-bottom">
+        <p>&copy; 2026 Indie Artist Radar. Hak Cipta Dilindungi.</p>
+        <p>Powered by Real-time Web Platform</p>
+      </div>
+    </div>
+  </footer>
 
-  // FUNGSI EKSTRAKSI YOUTUBE VIDEO ID DARI URL
-  function getYouTubeId(url) {
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  }
+  <!-- ==========================================
+       LOGIK & FIRESTORE JS
+       ========================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // 2. PROSES SUBMIT FORM KE FIRESTORE
-  const artistForm = document.getElementById('artistForm');
-  artistForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const rawYTUrl = document.getElementById('linkYTVideo').value;
-    const ytId = getYouTubeId(rawYTUrl);
-
-    if (!ytId) {
-      alert("Link Video YouTube tidak valid! Pastikan format link sesuai.");
-      return;
-    }
-
-    const newArtist = {
-      nama: document.getElementById('namaArtis').value,
-      genre: document.getElementById('genre').value,
-      yt_id: ytId,
-      links: {
-        spotify: document.getElementById('linkSpotify').value.trim(),
-        ytmusic: document.getElementById('linkYTMusic').value.trim(),
-        soundcloud: document.getElementById('linkSoundcloud').value.trim(),
-        audiomack: document.getElementById('linkAudiomack').value.trim(),
-        amazon: document.getElementById('linkAmazon').value.trim()
-      },
-      createdAt: new Date()
+    // 1. CONFIG FIRESTORE (Ganti dengan kunci proyek Firebase milikmu)
+    const firebaseConfig = {
+      apiKey: "ganti",
+      authDomain: "ganti",
+      projectId: "ganti",
+      storageBucket: "indie-m52.firtorage.app",
+      messagingSenderId: "ganti",
+      appId: "ganti"
     };
 
+    let db = null;
     try {
-      await addDoc(collection(db, "artists"), newArtist);
-      alert("Profil Artis Berhasil Ditambahkan!");
-      artistForm.reset();
-    } catch (err) {
-      console.error("Gagal menyimpan data: ", err);
-      alert("Terjadi kesalahan saat menyimpan data.");
+      if (firebaseConfig.projectId !== "ganti") {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+      }
+    } catch (e) {
+      console.warn("Firebase belum dikonfigurasi. Menampilkan mode demo.", e);
     }
-  });
 
-  // 3. READ DATA FIRESTORE SECARA REAL-TIME & RENDER DYNAMIC CARD
-  const container = document.getElementById('artistsContainer');
-  const q = query(collection(db, "artists"), orderBy("createdAt", "desc"));
+    // 2. LOGIKA MODAL POP-UP
+    const submitModal = document.getElementById('submitModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
 
-  onSnapshot(q, (snapshot) => {
-    container.innerHTML = ""; // Bersihkan kontainer sebelum merender ulang
+    function openModal() {
+      submitModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
+    function closeModal() {
+      submitModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    openModalBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Tutup saat klik luar modal / tekan Esc
+    submitModal.addEventListener('click', (e) => {
+      if (e.target === submitModal) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && submitModal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // FUNGSI EKSTRAKSI YOUTUBE VIDEO ID DARI URL
+    function getYouTubeId(url) {
+      if (!url) return null;
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // 3. PROSES SUBMIT FORM
+    const artistForm = document.getElementById('artistForm');
+    artistForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const rawYTUrl = document.getElementById('linkYTVideo').value;
+      const ytId = getYouTubeId(rawYTUrl);
+
+      if (!ytId) {
+        alert("Link Video YouTube tidak valid! Pastikan format link sesuai (contoh: https://www.youtube.com/watch?v=...).");
+        return;
+      }
+
+      const newArtist = {
+        nama: document.getElementById('namaArtis').value,
+        genre: document.getElementById('genre').value,
+        yt_id: ytId,
+        links: {
+          spotify: document.getElementById('linkSpotify').value.trim(),
+          ytmusic: document.getElementById('linkYTMusic').value.trim(),
+          soundcloud: document.getElementById('linkSoundcloud').value.trim(),
+          audiomack: document.getElementById('linkAudiomack').value.trim(),
+          amazon: document.getElementById('linkAmazon').value.trim()
+        },
+        createdAt: new Date()
+      };
+
+      if (db) {
+        try {
+          await addDoc(collection(db, "artists"), newArtist);
+          alert("Profil Artis Berhasil Ditambahkan ke Radar!");
+          artistForm.reset();
+          closeModal();
+        } catch (err) {
+          console.error("Gagal menyimpan data: ", err);
+          alert("Terjadi kesalahan saat menyimpan data.");
+        }
+      } else {
+        // Tambahkan lokal untuk mode preview jika Firestore belum aktif
+        renderArtistCard(newArtist, true);
+        alert("Profil Artis Berhasil Ditambahkan (Mode Preview/Demo)!");
+        artistForm.reset();
+        closeModal();
+      }
+    });
+
+    // 4. RENDER ARTIST CARD FUNCTION
+    const container = document.getElementById('artistsContainer');
+
+    function renderArtistCard(data, prepend = false) {
       const links = data.links || {};
-      
-      // URL Gambar Cover otomatis dari YouTube
       const coverUrl = `https://img.youtube.com/vi/${data.yt_id}/hqdefault.jpg`;
-      const fallbackImage = `https://via.placeholder.com/400x225/0b0c10/66fcf1?text=No+Cover`;
+      const ytWatchUrl = `https://www.youtube.com/watch?v=${data.yt_id}`;
+      const fallbackImage = `https://via.placeholder.com/400x225/141a22/66fcf1?text=Indie+Radar`;
 
       const card = document.createElement('div');
       card.className = 'artist-card';
@@ -205,19 +968,26 @@
       let cardHTML = `
         <div class="cover-wrapper">
           <img src="${coverUrl}" onerror="this.src='${fallbackImage}'" alt="Cover ${data.nama}">
+          <a href="${ytWatchUrl}" target="_blank" class="play-overlay" title="Tonton Video YouTube">
+            <div class="play-icon">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
         </div>
         <div class="card-body">
-          <div class="artist-name">${data.nama}</div>
+          <div class="artist-name" title="${data.nama}">${data.nama}</div>
           <div class="artist-genre">${data.genre}</div>
+          
+          <div class="platform-label">Stream Sekarang</div>
           <div class="platform-links">
+            <a href="${ytWatchUrl}" target="_blank" class="btn-link ytmusic"><i class="fa-brands fa-youtube"></i> YouTube</a>
       `;
 
-      // HANYA RENDER TOMBOL JIKA LINK DIISI USER
-      if (links.spotify) cardHTML += `<a href="${links.spotify}" target="_blank" class="btn-link spotify">Spotify</a>`;
-      if (links.ytmusic) cardHTML += `<a href="${links.ytmusic}" target="_blank" class="btn-link ytmusic">YT Music</a>`;
-      if (links.soundcloud) cardHTML += `<a href="${links.soundcloud}" target="_blank" class="btn-link soundcloud">SoundCloud</a>`;
-      if (links.audiomack) cardHTML += `<a href="${links.audiomack}" target="_blank" class="btn-link audiomack">Audiomack</a>`;
-      if (links.amazon) cardHTML += `<a href="${links.amazon}" target="_blank" class="btn-link amazon">Amazon</a>`;
+      if (links.spotify) cardHTML += `<a href="${links.spotify}" target="_blank" class="btn-link spotify"><i class="fa-brands fa-spotify"></i> Spotify</a>`;
+      if (links.ytmusic) cardHTML += `<a href="${links.ytmusic}" target="_blank" class="btn-link ytmusic"><i class="fa-solid fa-music"></i> YT Music</a>`;
+      if (links.soundcloud) cardHTML += `<a href="${links.soundcloud}" target="_blank" class="btn-link soundcloud"><i class="fa-brands fa-soundcloud"></i> SoundCloud</a>`;
+      if (links.audiomack) cardHTML += `<a href="${links.audiomack}" target="_blank" class="btn-link audiomack"><i class="fa-solid fa-record-vinyl"></i> Audiomack</a>`;
+      if (links.amazon) cardHTML += `<a href="${links.amazon}" target="_blank" class="btn-link amazon"><i class="fa-brands fa-amazon"></i> Amazon</a>`;
 
       cardHTML += `
           </div>
@@ -225,10 +995,64 @@
       `;
 
       card.innerHTML = cardHTML;
-      container.appendChild(card);
-    });
-  });
-</script>
 
+      if (prepend && container.firstChild) {
+        container.insertBefore(card, container.firstChild);
+      } else {
+        container.appendChild(card);
+      }
+    }
+
+    // 5. SAMPLE DEMO DATA (Tampil jika belum ada data Firestore)
+    const demoArtists = [
+      {
+        nama: "ABLEZ",
+        genre: "Hard Rock / Heavy Metal",
+        yt_id: "dQw4w9WgXcQ",
+        links: {
+          spotify: "https://spotify.com",
+          ytmusic: "https://music.youtube.com",
+          soundcloud: "https://soundcloud.com"
+        }
+      },
+      {
+        nama: "Skylight Echoes",
+        genre: "Indie Pop / Dream Pop",
+        yt_id: "L_LUpnjgPso",
+        links: {
+          spotify: "https://spotify.com",
+          audiomack: "https://audiomack.com"
+        }
+      },
+      {
+        nama: "Midnight Noise Project",
+        genre: "Post-Punk / Shoegaze",
+        yt_id: "fJ9rUzIMcZQ",
+        links: {
+          spotify: "https://spotify.com",
+          soundcloud: "https://soundcloud.com",
+          amazon: "https://amazon.com"
+        }
+      }
+    ];
+
+    // 6. LISTEN REAL-TIME FIRESTORE DATA
+    if (db) {
+      const q = query(collection(db, "artists"), orderBy("createdAt", "desc"));
+      onSnapshot(q, (snapshot) => {
+        container.innerHTML = "";
+        if (snapshot.empty) {
+          demoArtists.forEach(art => renderArtistCard(art));
+        } else {
+          snapshot.forEach((doc) => {
+            renderArtistCard(doc.data());
+          });
+        }
+      });
+    } else {
+      // Load sampel demo jika Firebase config belum diset
+      demoArtists.forEach(art => renderArtistCard(art));
+    }
+  </script>
 </body>
-            </html>
+</html>
